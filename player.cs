@@ -103,77 +103,77 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 posStart = Vector2.zero, posEnd = Vector2.zero;
+        //Vector2 posStart = Vector2.zero, posEnd = Vector2.zero;
 
 
-        if (swipe)
-        {
+        //if (swipe)
+        //{
 
 
 
-            if (swipe)
-            {
+        //    if (swipe)
+        //    {
 
-                if (InputWrapper.Input.touchCount == 1)
-                {
+        //        if (InputWrapper.Input.touchCount == 1)
+        //        {
 
-                    Touch touch = InputWrapper.Input.GetTouch(0);
-                    Vector3 curPosition = touchCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Hassasiyet));
-                    if (touch.phase == TouchPhase.Began)
-                    {
-                        offset = rb.position.x - curPosition.x;//Mathf.Abs()
+        //            Touch touch = InputWrapper.Input.GetTouch(0);
+        //            Vector3 curPosition = touchCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Hassasiyet));
+        //            if (touch.phase == TouchPhase.Began)
+        //            {
+        //                offset = rb.position.x - curPosition.x;//Mathf.Abs()
 
-                    }
+        //            }
 
-                    if (touch.phase == TouchPhase.Ended)
-                    {
-                        posStart.x = 0;
-                        posEnd.x = 0;
-                        offset = 0;
-                    }
-                    if (touch.phase == TouchPhase.Moved)
-                    {
-                        posEnd = touch.position;
-                        if (Mathf.Abs(posStart.x - posEnd.x) > 10f)
-                        {
-                            r = curPosition.x + offset;
-                        }
+        //            if (touch.phase == TouchPhase.Ended)
+        //            {
+        //                posStart.x = 0;
+        //                posEnd.x = 0;
+        //                offset = 0;
+        //            }
+        //            if (touch.phase == TouchPhase.Moved)
+        //            {
+        //                posEnd = touch.position;
+        //                if (Mathf.Abs(posStart.x - posEnd.x) > 10f)
+        //                {
+        //                    r = curPosition.x + offset;
+        //                }
 
-                        if (r >= yataySinir) r = yataySinir;
-                        if (r <= -yataySinir) r = -yataySinir;
-                        if (r > 1f && (Mathf.Abs(touch.deltaPosition.x) > 1))
-                        {
-                            horizontalMovement = -1;
-                            duzGitmeMiktari = 0;
-                        }
-                        else if (r < -1f && (Mathf.Abs(touch.deltaPosition.x) > 1))
-                        {
-                            horizontalMovement = 1;
-                            duzGitmeMiktari = 0;
-                        }
+        //                if (r >= yataySinir) r = yataySinir;
+        //                if (r <= -yataySinir) r = -yataySinir;
+        //                if (r > 1f && (Mathf.Abs(touch.deltaPosition.x) > 1))
+        //                {
+        //                    horizontalMovement = -1;
+        //                    duzGitmeMiktari = 0;
+        //                }
+        //                else if (r < -1f && (Mathf.Abs(touch.deltaPosition.x) > 1))
+        //                {
+        //                    horizontalMovement = 1;
+        //                    duzGitmeMiktari = 0;
+        //                }
 
-                        if (Mathf.Abs(touch.deltaPosition.x) < 1) { duzGitmeMiktari += Time.deltaTime; if (duzGitmeMiktari > 0.5f) horizontalMovement = 0; }
+        //                if (Mathf.Abs(touch.deltaPosition.x) < 1) { duzGitmeMiktari += Time.deltaTime; if (duzGitmeMiktari > 0.5f) horizontalMovement = 0; }
 
-                    }
+        //            }
 
 
-                }
+        //        }
 
-                else if (InputWrapper.Input.touchCount == 0)
-                {
-                }
-                if (rb.transform.position.x >= yataySinir) rb.transform.position = new Vector3(yataySinir, rb.transform.position.y, rb.transform.position.z);
-                if (rb.transform.position.x <= -yataySinir) rb.transform.position = new Vector3(-yataySinir, rb.transform.position.y, rb.transform.position.z);
+        //        else if (InputWrapper.Input.touchCount == 0)
+        //        {
+        //        }
+        //        if (rb.transform.position.x >= yataySinir) rb.transform.position = new Vector3(yataySinir, rb.transform.position.y, rb.transform.position.z);
+        //        if (rb.transform.position.x <= -yataySinir) rb.transform.position = new Vector3(-yataySinir, rb.transform.position.y, rb.transform.position.z);
 
-                transform.position =
-                            new Vector3(r, transform.position.y, transform.position.z);
+        //        transform.position =
+        //                    new Vector3(r, transform.position.y, transform.position.z);
 
-            }
-            print("r: " + r);
-            if (moveTwo)
-                transform.position += new Vector3(0, 0f, speed * Time.deltaTime);
+        //    }
+        //    print("r: " + r);
+        //    if (moveTwo)
+        //        transform.position += new Vector3(0, 0f, speed * Time.deltaTime);
 
-        }
+        //}
 
         if (currentHealt <= 0)
         {
@@ -188,8 +188,8 @@ public class player : MonoBehaviour
             //m_Rigidbody.MovePosition(transform.position + m_Input * Time.deltaTime * m_Speed);
 
             //Mobil
-            //Vector3 m_Input = new Vector3(CrossPlatformInputManager.GetAxisRaw("Horizontal"), 0, mainSpeed /*CrossPlatformInputManager.GetAxisRaw("Vertical")*/);
-            //m_Rigidbody.MovePosition(transform.position + m_Input * Time.deltaTime * m_Speed);
+            Vector3 m_Input = new Vector3(CrossPlatformInputManager.GetAxisRaw("Horizontal"), 0, mainSpeed /*CrossPlatformInputManager.GetAxisRaw("Vertical")*/);
+            m_Rigidbody.MovePosition(transform.position + m_Input * Time.deltaTime * m_Speed);
         }
 
         if(start)
@@ -208,22 +208,14 @@ public class player : MonoBehaviour
 
 
 
-        //if (transform.localPosition.x > 74)
-        //{
-        //    transform.localPosition = new Vector3(74f, transform.localPosition.y, transform.localPosition.z);
-        //}
-        //else if (transform.localPosition.x < 36f)
-        //{
-        //    transform.localPosition = new Vector3(36f, transform.localPosition.y, transform.localPosition.z);
-        //}
-
-
-
-
-
-
-
-
+        if (transform.localPosition.x > 41)
+        {
+            transform.localPosition = new Vector3(41f, transform.localPosition.y, transform.localPosition.z);
+        }
+        else if (transform.localPosition.x < 4f)
+        {
+            transform.localPosition = new Vector3(4f, transform.localPosition.y, transform.localPosition.z);
+        }
 
     }
     private void TakeDamage(int damage)
